@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Apresentação: IA no Desenvolvimento</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&family=Roboto+Mono:wght@500&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background-color: #F9F9F9; /* Fundo Blueprint claro */
+      color: #222222;
+      font-family: 'Helvetica Neue', Helvetica, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      /* Textura de fundo principal */
+      background-image: 
+        linear-gradient(#D3D3D3 1px, transparent 1px),
+        linear-gradient(90deg, #D3D3D3 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      background: #FFFFFF;
+      padding: 0.8rem 1.5rem;
+      border: 1px solid #222222; /* Borda solida tecnica */
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.1); /* Sombra solida */
+      z-index: 1000;
+    }
+
+    button {
+      background: transparent;
+      color: #222222;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 1rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    button:hover:not(:disabled) {
+      color: #5B9BD5;
+      border: 1px dashed #5B9BD5;
+      background: #EAF4FC;
+    }
+
+    button:disabled {
+      color: #888888;
+      cursor: not-allowed;
+      border-color: transparent;
+      background: transparent;
+    }
+
+    #fullscreen-btn {
+      padding: 0.4rem;
+      aspect-ratio: 1 / 1;
+      justify-content: center;
+    }
+
+    .slide-counter {
+      display: flex;
+      align-items: center;
+      color: #C0392B; /* Vermelho alerta para a contagem */
+      font-family: 'Roboto Mono', monospace;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0 0.5rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Animação suave na transição de iframes */
+    .fade-out { opacity: 0; }
+    .fade-in { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <iframe id="slide-frame" src="slides/contexto-mudanca-paradigma.html"></iframe>
+
+  <div class="controls">
+    <button id="prev-btn" onclick="prevSlide()" disabled>
+      <span>&larr;</span> Anterior
+    </button>
+    <div class="slide-counter">
+      <span id="current-slide">1</span> &nbsp;/&nbsp; <span id="total-slides">2</span>
+    </div>
+    <button id="next-btn" onclick="nextSlide()">
+      Próximo <span>&rarr;</span>
+    </button>
+    <button id="fullscreen-btn" onclick="toggleFullScreen()" title="Tela Cheia">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    const slides = [
+      'slides/contexto-mudanca-paradigma.html',
+      'slides/caixa-preta-stateless.html',
+      'slides/da-escrita-para-revisao.html',
+      'slides/do-como-para-o-que.html',
+      'slides/agentes-autonomos.html',
+      'slides/hiper-agilidade.html',
+      'slides/novo-scrum-master-po.html',
+      'slides/novo-gargalo.html',
+      'slides/vibe-coding.html',
+      'slides/spec-driven-development.html',
+      'slides/melhor-dos-dois-mundos.html'
+    ];
+    
+    let currentIndex = 0;
+
+    const frame = document.getElementById('slide-frame');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const currentSpan = document.getElementById('current-slide');
+    const totalSpan = document.getElementById('total-slides');
+
+    totalSpan.textContent = slides.length;
+
+    function updateControls() {
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === slides.length - 1;
+      currentSpan.textContent = currentIndex + 1;
+      
+      // Animação de fade
+      frame.classList.add('fade-out');
+      setTimeout(() => {
+        frame.src = slides[currentIndex];
+        frame.onload = () => frame.classList.remove('fade-out');
+      }, 200);
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateControls();
+      }
+    }
+
+    function nextSlide() {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updateControls();
+      }
+    }
+
+    // Navegação por teclado global
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    // Escuta eventos vindos do iframe (caso o usuário clique e dê foco no slide)
+    window.addEventListener('message', (e) => {
+      if (e.data === 'next') nextSlide();
+      if (e.data === 'prev') prevSlide();
+    });
+
+    // Função de Tela Cheia
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch((err) => {
+          console.warn(`Erro ao tentar entrar em modo tela cheia: ${err.message} (${err.name})`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+  </script>
+</body>
+</html>

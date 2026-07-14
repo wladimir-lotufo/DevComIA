@@ -1,0 +1,30 @@
+{
+  "sources": [],
+  "decks": [
+    {
+      "name": "ApresentacaoIA",
+      "template": "aula-capitulo",
+      "theme": "mira-dark",
+      "createdAt": "2026-07-12T18:04:26.847Z"
+    },
+    {
+      "name": "ApresentacaoIA",
+      "template": "demo-tecnica",
+      "theme": "light-minimal",
+      "createdAt": "2026-07-12T18:08:27.334Z"
+    },
+    {
+      "name": "ApresentacaoIA",
+      "template": "demo-tecnica",
+      "theme": "light-minimal",
+      "createdAt": "2026-07-12T18:18:19.696Z"
+    }
+  ],
+  "version": "0.1.40",
+  "projectName": "DevComIA",
+  "userName": "Miro",
+  "chatLanguage": "pt-br",
+  "defaultTheme": "mira-dark",
+  "installedAt": "2026-07-12T18:02:03.835Z",
+  "updatedAt": "2026-07-12T18:02:03.835Z"
+}

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mira Draft - Viewer</title>
+  <style>
+    :root {
+      --bg-color: transparent;
+      --ruler-color: rgba(130, 224, 216, 0.4);
+      --ruler-axis-color: rgba(130, 224, 216, 0.8);
+      --text-color: #333;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #fcfcfc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    #viewport {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      cursor: grab;
+      transition: background-color 0.2s;
+    }
+    #viewport:active {
+      cursor: grabbing;
+    }
+
+    #viewport.show-rules {
+      background-image: 
+        linear-gradient(to right, var(--ruler-axis-color) 2px, transparent 2px),
+        linear-gradient(to bottom, var(--ruler-axis-color) 2px, transparent 2px),
+        linear-gradient(to right, var(--ruler-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--ruler-color) 1px, transparent 1px);
+    }
+
+    #canvas {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+    }
+
+    /* Classe ativada dinamicamente para animações de câmera */
+    #canvas.animating {
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .mira-asset {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      user-drag: none; 
+      -webkit-user-drag: none;
+      width: 400px;
+      height: auto;
+      opacity: 0;
+      animation: fadeIn 0.4s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    #ui-menu {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 6px 12px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.1);
+      font-size: 12px;
+    }
+
+    #zoom-indicator {
+      font-weight: 600;
+      color: #666;
+      min-width: 45px;
+      text-align: right;
+      margin-right: 5px;
+      user-select: none;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(0,0,0,0.1);
+      padding: 4px 10px;
+      font-weight: 500;
+      color: #555;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+      font-size: 11px;
+    }
+    .btn:hover {
+      background: rgba(130, 224, 216, 0.8);
+      color: #111;
+      border-color: rgba(130, 224, 216, 1);
+    }
+
+    .btn.active {
+      background: #FF904D;
+      color: #fff;
+      border-color: #FF904D;
+    }
+    
+    .edit-only { display: none; }
+    .edit-mode .edit-only { display: inline-block; }
+    .edit-mode .mira-asset { cursor: grab; border: 2px dashed rgba(255,144,77,0.5); border-radius: 8px; }
+    .edit-mode .mira-asset:active { cursor: grabbing; }
+
+    
+    #coordinates {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 11px;
+      pointer-events: none;
+      z-index: 9999;
+      display: none;
+    }
+    #viewport:hover ~ #coordinates {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ui-menu">
+    <span id="zoom-indicator">100%</span>
+    <button id="btn-edit" class="btn">Modo: Apresentação</button>
+    <button id="btn-copy" class="btn edit-only">Copiar Ajustes</button>
+    <button id="btn-reset" class="btn">Reset</button>
+  </div>
+
+  <div id="coordinates">x: 0, y: 0</div>
+
+  <div id="viewport">
+    <div id="canvas"></div>
+  </div>
+
+  <script>
+    // MIRA_SLIDES (Injetado dinamicamente pelo comando /draft consolidar)
+    // Lê apenas os itens marcados com "- [x]" no roteiro.md
+    const MIRA_SLIDES = [
+      /* MIRA: INICIO JSON ASSETS */
+      /* Exemplo: { src: ".assets/ai_types.svg", x: 0, y: 0 }, */
+      /* MIRA: FIM JSON ASSETS */
+    ];
+
+    const viewport = document.getElementById('viewport');
+
+    // Inicializa as coordenadas originais para diff
+    MIRA_SLIDES.forEach(s => {
+      s.origX = s.x;
+      s.origY = s.y;
+    });
+    const canvas = document.getElementById('canvas');
+    const btnReset = document.getElementById('btn-reset');
+    const btnEdit = document.getElementById('btn-edit');
+    const btnCopy = document.getElementById('btn-copy');
+    const coordDisplay = document.getElementById('coordinates');
+    const zoomIndicator = document.getElementById('zoom-indicator');
+
+    // Engine de Apresentação
+    let currentSlideIndex = -1;
+    let renderedImages = [];
+
+    let scale = 1;
+    let translateX = 0; 
+    let translateY = 0;
+    
+    let isDragging = false;
+    let isDraggingAsset = false;
+    let draggedAsset = null;
+    let assetStartX, assetStartY;
+    let startX, startY;
+    let initialTranslateX, initialTranslateY;
+    let editMode = false;
+
+    function updateRulesBackground() {
+      if (viewport.classList.contains('show-rules')) {
+        const scaledSize = 100 * scale;
+        viewport.style.backgroundSize = `
+          100% 100%, 100% 100%, 
+          ${scaledSize}px ${scaledSize}px, ${scaledSize}px ${scaledSize}px
+        `;
+        
+        const centerX = window.innerWidth / 2 + translateX;
+        const centerY = window.innerHeight / 2 + translateY;
+        
+        viewport.style.backgroundPosition = `
+          ${centerX}px 0, 0 ${centerY}px, 
+          ${centerX}px ${centerY}px, ${centerX}px ${centerY}px
+        `;
+      }
+    }
+
+    function updateTransform() {
+      canvas.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+      zoomIndicator.textContent = `${Math.round(scale * 100)}%`;
+      updateRulesBackground();
+    }
+
+    // Move a câmera cinematicamente para uma coordenada
+    function panCameraTo(x, y) {
+      canvas.classList.add('animating');
+      // A câmera deve ir na direção OPOSTA à coordenada para que a imagem fique no centro
+      translateX = -x * scale;
+      translateY = -y * scale;
+      updateTransform();
+      
+      // Remove a transição depois que terminar para não interferir no drag manual
+      setTimeout(() => {
+        canvas.classList.remove('animating');
+      }, 600);
+    }
+
+    // Avança 1 Slide (Renderiza imagem e move câmera)
+    function nextSlide() {
+      if (currentSlideIndex + 1 >= MIRA_SLIDES.length) return; // Fim da apresentação
+      
+      currentSlideIndex++;
+      const slide = MIRA_SLIDES[currentSlideIndex];
+      
+      // Cria a imagem
+      const img = document.createElement('img');
+      img.src = slide.src;
+      img.className = 'mira-asset';
+      img.style.left = `${slide.x}px`;
+      img.style.top = `${slide.y}px`;
+      
+      canvas.appendChild(img);
+      renderedImages.push(img);
+      
+      panCameraTo(slide.x, slide.y);
+    }
+
+    // Volta 1 Slide (Apaga última imagem e move câmera)
+    function prevSlide() {
+      if (currentSlideIndex < 0) return; // Já está no início
+      
+      // Remove a última imagem
+      const img = renderedImages.pop();
+      if (img) canvas.removeChild(img);
+      
+      currentSlideIndex--;
+      
+      if (currentSlideIndex >= 0) {
+        const prevSlide = MIRA_SLIDES[currentSlideIndex];
+        panCameraTo(prevSlide.x, prevSlide.y);
+      } else {
+        panCameraTo(0, 0); // Volta para o ponto zero original
+      }
+    }
+
+    // Intercepta o clique esquerdo (Avançar) e o clique direito (Voltar)
+    viewport.addEventListener('mousedown', (e) => {
+      if (e.button === 1 || (e.button === 0 && editMode && !e.target.classList.contains('mira-asset'))) {
+        e.preventDefault(); 
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        initialTranslateX = translateX;
+        initialTranslateY = translateY;
+        return;
+      }
+      
+      if (e.button === 0 && editMode && e.target.classList.contains('mira-asset')) {
+        e.preventDefault();
+        isDraggingAsset = true;
+        draggedAsset = e.target;
+        assetStartX = e.clientX;
+        assetStartY = e.clientY;
+        return;
+      }
+      
+      // Left click (Avançar Slide)
+      if (e.button === 0 && !editMode) {
+        if (!e.target.closest('#ui-menu')) {
+          e.preventDefault();
+          nextSlide();
+        }
+      }
+    });
+
+    // Right click (Voltar Slide)
+    viewport.addEventListener('contextmenu', (e) => {
+      e.preventDefault(); // Impede o menu de opções nativo
+      if (!e.target.closest('#ui-menu') && !editMode) {
+        prevSlide();
+      }
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (editMode) {
+        coordDisplay.style.display = 'block';
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const canvasX = Math.round((e.clientX - centerX - translateX) / scale);
+        const canvasY = Math.round((e.clientY - centerY - translateY) / scale);
+        coordDisplay.textContent = `x: ${canvasX}, y: ${canvasY}`;
+      } else {
+        coordDisplay.style.display = 'none';
+      }
+
+      if (isDraggingAsset && draggedAsset) {
+        const dx = (e.clientX - assetStartX) / scale;
+        const dy = (e.clientY - assetStartY) / scale;
+        
+        let currentLeft = parseFloat(draggedAsset.style.left) || 0;
+        let currentTop = parseFloat(draggedAsset.style.top) || 0;
+        
+        draggedAsset.style.left = `${currentLeft + dx}px`;
+        draggedAsset.style.top = `${currentTop + dy}px`;
+        
+        assetStartX = e.clientX;
+        assetStartY = e.clientY;
+        return;
+      }
+
+      if (!isDragging) return;
+      
+      // Remove classe animating se o usuário assumir o controle manual
+      canvas.classList.remove('animating');
+      
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      translateX = initialTranslateX + dx;
+      translateY = initialTranslateY + dy;
+      updateTransform();
+    });
+
+    window.addEventListener('mouseup', (e) => {
+      if(e.button === 1 || (e.button === 0 && editMode)) {
+        isDragging = false;
+        if (isDraggingAsset && draggedAsset) {
+          const newX = Math.round(parseFloat(draggedAsset.style.left));
+          const newY = Math.round(parseFloat(draggedAsset.style.top));
+          draggedAsset.style.left = `${newX}px`;
+          draggedAsset.style.top = `${newY}px`;
+          
+          const index = renderedImages.indexOf(draggedAsset);
+          if (index !== -1) {
+            MIRA_SLIDES[index].x = newX;
+            MIRA_SLIDES[index].y = newY;
+          }
+        }
+        isDraggingAsset = false;
+        draggedAsset = null;
+      }
+    });
+
+    window.addEventListener('auxclick', (e) => {
+      if (e.button === 1) e.preventDefault();
+    });
+
+    viewport.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      canvas.classList.remove('animating'); // Cancela auto-pan no scroll
+      
+      const zoomSensitivity = 0.001;
+      const delta = -e.deltaY * zoomSensitivity;
+      const newScale = Math.min(Math.max(0.1, scale * Math.exp(delta)), 5);
+      
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      
+      const mouseX = e.clientX - centerX;
+      const mouseY = e.clientY - centerY;
+
+      const ratio = newScale / scale;
+      translateX = mouseX - (mouseX - translateX) * ratio;
+      translateY = mouseY - (mouseY - translateY) * ratio;
+
+      scale = newScale;
+      updateTransform();
+    }, { passive: false });
+
+    // Botões UI
+    btnEdit.addEventListener('click', () => {
+      editMode = !editMode;
+      if (editMode) {
+        document.body.classList.add('edit-mode');
+        btnEdit.textContent = 'Modo: Edição';
+        btnEdit.classList.add('active');
+        if (renderedImages.length < MIRA_SLIDES.length) {
+          while (currentSlideIndex + 1 < MIRA_SLIDES.length) {
+            currentSlideIndex++;
+            const slide = MIRA_SLIDES[currentSlideIndex];
+            const img = document.createElement('img');
+            img.src = slide.src;
+            img.className = 'mira-asset';
+            img.style.left = `${slide.x}px`;
+            img.style.top = `${slide.y}px`;
+            canvas.appendChild(img);
+            renderedImages.push(img);
+          }
+        }
+        renderedImages.forEach((img, i) => {
+          img.title = MIRA_SLIDES[i].src.split('/').pop();
+        });
+        viewport.classList.add('show-rules');
+        updateRulesBackground();
+      } else {
+        document.body.classList.remove('edit-mode');
+        btnEdit.textContent = 'Modo: Apresentação';
+        btnEdit.classList.remove('active');
+        viewport.classList.remove('show-rules');
+        renderedImages.forEach(img => {
+          img.removeAttribute('title');
+        });
+      }
+    });
+
+    btnCopy.addEventListener('click', () => {
+      let promptLines = ['Atualize o roteiro.md com as seguintes coordenadas ajustadas:\n'];
+      let hasChanges = false;
+      
+      MIRA_SLIDES.forEach((slide) => {
+        if (slide.x !== slide.origX || slide.y !== slide.origY) {
+          hasChanges = true;
+          promptLines.push(`- [img: ${slide.src} | x: ${slide.x}, y: ${slide.y}]`);
+        }
+      });
+
+      if (hasChanges) {
+        const textToCopy = promptLines.join('\n');
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          alert("Ajustes copiados para o clipboard!\n\nCole na IA para atualizar o roteiro.md.");
+        }).catch(err => {
+          alert("Erro ao copiar: " + err);
+        });
+      } else {
+        alert("Nenhuma imagem foi reposicionada.");
+      }
+    });
+
+
+
+    btnReset.addEventListener('click', () => {
+      scale = 1;
+      translateX = 0;
+      translateY = 0;
+      updateTransform();
+    });
+
+    // Início (Fica vazio em 0,0 aguardando o primeiro clique)
+    updateTransform();
+    window.addEventListener('resize', updateRulesBackground);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<mxfile host="65bd71144e">
+    <diagram id="macro_process_diagram" name="Macro Processos">
+        <mxGraphModel dx="997" dy="707" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="center" value="Plataforma de Software&#10;em Produção" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;fontStyle=1;fontSize=18;" parent="1" vertex="1">
+                    <mxGeometry x="450" y="320" width="180" height="100" as="geometry"/>
+                </mxCell>
+                <UserObject label="1. Engenharia &amp; Evolução" link="data:page/id,mentor-process" id="dev">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#26435C;strokeColor=#333333;fontColor=#FFFFFF;fontStyle=1;fontSize=14;verticalAlign=top;spacingTop=10;" parent="1" vertex="1">
+                        <mxGeometry x="40" y="40" width="280" height="280" as="geometry"/>
+                    </mxCell>
+                </UserObject>
+                <mxCell id="d0" value="Arquitetura e Design System" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D0E3F3;strokeColor=#26435C;fontColor=#000000;" parent="dev" vertex="1">
+                    <mxGeometry x="20" y="40" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="d1" value="Concepção de Produto" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D0E3F3;strokeColor=#26435C;fontColor=#000000;" parent="dev" vertex="1">
+                    <mxGeometry x="20" y="80" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="d2" value="Requisitos e Backlog" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D0E3F3;strokeColor=#26435C;fontColor=#000000;" parent="dev" vertex="1">
+                    <mxGeometry x="20" y="120" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="d3" value="Design e Prototipação (UI First)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D0E3F3;strokeColor=#26435C;fontColor=#000000;" parent="dev" vertex="1">
+                    <mxGeometry x="20" y="160" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="d4" value="Implementação Técnica" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D0E3F3;strokeColor=#26435C;fontColor=#000000;" parent="dev" vertex="1">
+                    <mxGeometry x="20" y="200" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="d5" value="Integração e Entrega (CI/CD)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D0E3F3;strokeColor=#26435C;fontColor=#000000;" parent="dev" vertex="1">
+                    <mxGeometry x="20" y="240" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ops" value="2. Sustentação &amp; Operação" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#58412B;strokeColor=#333333;fontColor=#FFFFFF;fontStyle=1;fontSize=14;verticalAlign=top;spacingTop=10;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="40" width="280" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="o1" value="Monitoramento e Observabilidade" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBDDD0;strokeColor=#58412B;fontColor=#000000;" parent="ops" vertex="1">
+                    <mxGeometry x="20" y="40" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="o2" value="Gestão de Incidentes (N1/N2/N3)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBDDD0;strokeColor=#58412B;fontColor=#000000;" parent="ops" vertex="1">
+                    <mxGeometry x="20" y="80" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="o3" value="Gestão de Problemas (RCA)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBDDD0;strokeColor=#58412B;fontColor=#000000;" parent="ops" vertex="1">
+                    <mxGeometry x="20" y="120" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="o4" value="Mudanças e Liberações (Deploy)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EBDDD0;strokeColor=#58412B;fontColor=#000000;" parent="ops" vertex="1">
+                    <mxGeometry x="20" y="160" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="infra" value="3. Infra &amp; Plataforma" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#607D8B;strokeColor=#333333;fontColor=#FFFFFF;fontStyle=1;fontSize=14;verticalAlign=top;spacingTop=10;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="500" width="280" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="i1" value="Infraestrutura como Código (IaC)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CFD8DC;strokeColor=#607D8B;fontColor=#000000;" parent="infra" vertex="1">
+                    <mxGeometry x="20" y="40" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="i2" value="Capacidade e Escalabilidade" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CFD8DC;strokeColor=#607D8B;fontColor=#000000;" parent="infra" vertex="1">
+                    <mxGeometry x="20" y="80" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="i3" value="Disaster Recovery (D.R.)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CFD8DC;strokeColor=#607D8B;fontColor=#000000;" parent="infra" vertex="1">
+                    <mxGeometry x="20" y="120" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="i4" value="FinOps" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#CFD8DC;strokeColor=#607D8B;fontColor=#000000;" parent="infra" vertex="1">
+                    <mxGeometry x="20" y="160" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="sec" value="4. Segurança &amp; Conformidade" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#583959;strokeColor=#333333;fontColor=#FFFFFF;fontStyle=1;fontSize=14;verticalAlign=top;spacingTop=10;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="500" width="280" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1" value="Segurança Antecipada (Shift-Left)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8D5E8;strokeColor=#583959;fontColor=#000000;" parent="sec" vertex="1">
+                    <mxGeometry x="20" y="40" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2" value="Gestão de Identidade (IAM) e Keys" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8D5E8;strokeColor=#583959;fontColor=#000000;" parent="sec" vertex="1">
+                    <mxGeometry x="20" y="80" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="s3" value="Proteção Perimetral (WAF/DDoS)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8D5E8;strokeColor=#583959;fontColor=#000000;" parent="sec" vertex="1">
+                    <mxGeometry x="20" y="120" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="s4" value="Governança de Dados (LGPD)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8D5E8;strokeColor=#583959;fontColor=#000000;" parent="sec" vertex="1">
+                    <mxGeometry x="20" y="160" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="know" value="5. Conhecimento" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4A605B;strokeColor=#333333;fontColor=#FFFFFF;fontStyle=1;fontSize=14;verticalAlign=top;spacingTop=10;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="580" width="280" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="k1" value="Runbooks e Playbooks" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D9ECE6;strokeColor=#4A605B;fontColor=#000000;" parent="know" vertex="1">
+                    <mxGeometry x="20" y="40" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="k2" value="Portal de Arquitetura e Negócios" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D9ECE6;strokeColor=#4A605B;fontColor=#000000;" parent="know" vertex="1">
+                    <mxGeometry x="20" y="80" width="240" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_dev" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" parent="1" source="center" target="dev" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_ops" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" parent="1" source="center" target="ops" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_infra" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" parent="1" source="center" target="infra" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_sec" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" parent="1" source="center" target="sec" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_know" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;" parent="1" source="center" target="know" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="mentor-process" name="Engenharia e Evolução">
+        <mxGraphModel dx="997" dy="707" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1800" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="Fase0" value="Fase 0 - Arquitetura &amp; Design System" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontColor=#FFFFFF;fillColor=#607D8B;swimlaneFillColor=#ECEFF1;strokeColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="20" y="9" width="460" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_Arch" value="Workflow: /Architecture" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CFD8DC;strokeColor=#607D8B;strokeWidth=2;fontColor=#000000;" parent="Fase0" vertex="1">
+                    <mxGeometry x="40" y="60" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_Arch" value="Architecture.md" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase0" vertex="1">
+                    <mxGeometry x="270" y="55" width="150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_Design" value="Workflow: /DesignSystem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CFD8DC;strokeColor=#607D8B;strokeWidth=2;fontColor=#000000;" parent="Fase0" vertex="1">
+                    <mxGeometry x="130" y="140" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_Design" value="designsystem.md" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase0" vertex="1">
+                    <mxGeometry x="330" y="135" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_Arch_to_DS" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase0" source="W_Arch" target="W_Design" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_Arch_doc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase0" source="W_Arch" target="A_Arch" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_Design_doc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase0" source="W_Design" target="A_Design" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Fase1" value="Fase 1 - Concepção do Produto" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontColor=#FFFFFF;fillColor=#4A605B;swimlaneFillColor=#EBF3F0;strokeColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="259" width="460" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_Personas" value="Workflow: /Personas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9ECE6;strokeColor=#4A605B;strokeWidth=2;fontColor=#000000;" parent="Fase1" vertex="1">
+                    <mxGeometry x="40" y="60" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_Lean1" value="lean-inception.md" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase1" vertex="1">
+                    <mxGeometry x="240" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_Jornadas" value="Workflow: /Jornadas" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9ECE6;strokeColor=#4A605B;strokeWidth=2;fontColor=#000000;" parent="Fase1" vertex="1">
+                    <mxGeometry x="130" y="140" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_Lean2" value="lean-inception.md (Atualizado)" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase1" vertex="1">
+                    <mxGeometry x="330" y="135" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_P_to_J" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase1" source="W_Personas" target="W_Jornadas" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_Lean1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase1" source="W_Personas" target="A_Lean1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_Lean2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase1" source="W_Jornadas" target="A_Lean2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_DS_to_P" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="W_Design" target="W_Personas" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Fase2" value="Fase 2 - Requisitos" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontColor=#FFFFFF;fillColor=#26435C;swimlaneFillColor=#E9F1F7;strokeColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="509" width="460" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_Features" value="Workflow: /Features" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D0E3F3;strokeColor=#26435C;strokeWidth=2;fontColor=#000000;" parent="Fase2" vertex="1">
+                    <mxGeometry x="40" y="60" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_Feature" value="feature-{View}.md" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase2" vertex="1">
+                    <mxGeometry x="240" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_US" value="Workflow: /userstory" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D0E3F3;strokeColor=#26435C;strokeWidth=2;fontColor=#000000;" parent="Fase2" vertex="1">
+                    <mxGeometry x="130" y="140" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_US" value="user-stories/*.md" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase2" vertex="1">
+                    <mxGeometry x="330" y="135" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_J_to_US" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase2" source="W_Features" target="W_US" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_Feat" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase2" source="W_Features" target="A_Feature" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_US" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase2" source="W_US" target="A_US" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_J_to_F" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="W_Jornadas" target="W_Features" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Fase3" value="Fase 3 - Design (UI First)" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontColor=#FFFFFF;fillColor=#583959;swimlaneFillColor=#F3EBF3;strokeColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="759" width="460" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_Proto" value="Workflow: /Prototype" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8D5E8;strokeColor=#583959;strokeWidth=2;fontColor=#000000;" parent="Fase3" vertex="1">
+                    <mxGeometry x="40" y="60" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_Proto" value="Frontend Mockups&#10;(xaml, razor, tsx)" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase3" vertex="1">
+                    <mxGeometry x="240" y="50" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_Entities" value="Workflow: /BusinessEntities" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8D5E8;strokeColor=#583959;strokeWidth=2;fontColor=#000000;" parent="Fase3" vertex="1">
+                    <mxGeometry x="130" y="140" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_Entity" value="data/{Entity}.md" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase3" vertex="1">
+                    <mxGeometry x="330" y="135" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_Proto_to_Ent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase3" source="W_Proto" target="W_Entities" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_Proto" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase3" source="W_Proto" target="A_Proto" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_Ent" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase3" source="W_Entities" target="A_Entity" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_US_to_Proto" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="W_US" target="W_Proto" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Fase4" value="Fase 4 - Implementação (Backend)" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontColor=#FFFFFF;fillColor=#58412B;swimlaneFillColor=#F7F0EA;strokeColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="1009" width="696" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_DB" value="Workflow: /Database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBDDD0;strokeColor=#58412B;strokeWidth=2;fontColor=#000000;" parent="Fase4" vertex="1">
+                    <mxGeometry x="40" y="60" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_SQL" value="Scripts.sql &amp; Models" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase4" vertex="1">
+                    <mxGeometry x="240" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_Api" value="Workflow: /Api" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBDDD0;strokeColor=#58412B;strokeWidth=2;fontColor=#000000;" parent="Fase4" vertex="1">
+                    <mxGeometry x="130" y="140" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_DAL" value="Db{Table}.cs" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase4" vertex="1">
+                    <mxGeometry x="330" y="135" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_Ctrl" value="Workflow: /Controller" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBDDD0;strokeColor=#58412B;strokeWidth=2;fontColor=#000000;" parent="Fase4" vertex="1">
+                    <mxGeometry x="220" y="220" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_Controller" value="{Controller}.cs" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase4" vertex="1">
+                    <mxGeometry x="418" y="215" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_View" value="Workflow: /View" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBDDD0;strokeColor=#58412B;strokeWidth=2;fontColor=#000000;" parent="Fase4" vertex="1">
+                    <mxGeometry x="310" y="300" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_FinalView" value="{View}.cshtml&#10;(Integração Final)" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase4" vertex="1">
+                    <mxGeometry x="531" y="295" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_DB_to_API" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase4" source="W_DB" target="W_Api" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_API_to_Ctrl" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase4" source="W_Api" target="W_Ctrl" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_Ctrl_to_View" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase4" source="W_Ctrl" target="W_View" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_DB" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase4" source="W_DB" target="A_SQL" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_Api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase4" source="W_Api" target="A_DAL" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_Ctrl" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase4" source="W_Ctrl" target="A_Controller" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_View" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase4" source="W_View" target="A_FinalView" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_Ent_to_DB" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="W_Entities" target="W_DB" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="Fase5" value="Fase 5 - Integração e Entrega (CI/CD)" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontColor=#FFFFFF;fillColor=#825028;swimlaneFillColor=#FFF9F5;strokeColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="678" y="1402" width="619" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_CI" value="Workflow: Automático (PR)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EED0BA;strokeColor=#825028;strokeWidth=2;fontColor=#000000;" parent="Fase5" vertex="1">
+                    <mxGeometry x="110" y="140" width="160" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_CI" value="Relatórios Lints,&#10;Testes, SAST" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#FFFFFF;strokeColor=#777777;fontColor=#000000;" parent="Fase5" vertex="1">
+                    <mxGeometry x="305" y="135" width="120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="W_Deploy" value="Workflow: /Deploy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EED0BA;strokeColor=#825028;strokeWidth=2;fontColor=#000000;" parent="Fase5" vertex="1">
+                    <mxGeometry x="120" y="300" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="A_Prod" value="Sistema em&#10;Homolog/Produção" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;fillColor=#D5E8D4;strokeColor=#82B366;fontColor=#000000;fontStyle=1" parent="Fase5" vertex="1">
+                    <mxGeometry x="305" y="295" width="140" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_CI_to_Deploy" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="Fase5" source="W_CI" target="W_Deploy" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_CI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=#555555;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase5" source="W_CI" target="A_CI" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_A_Prod" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1BA1E2;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="Fase5" source="W_Deploy" target="A_Prod" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_View_to_CI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="W_View" target="W_CI" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

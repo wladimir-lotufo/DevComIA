@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <!-- Sketchy Clock SVG -->
+  <g stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    
+    <!-- Outer clock body -->
+    <path d="M 95 32 C 145 30 175 55 172 105 C 168 155 140 175 95 172 C 45 168 25 140 28 95 C 30 45 55 35 95 32 Z" />
+    
+    <!-- Inner clock face -->
+    <path d="M 98 46 C 135 44 156 62 155 102 C 153 140 132 156 98 155 C 60 153 45 132 46 98 C 48 60 65 48 98 46 Z" />
+    
+    <!-- Left bell -->
+    <path d="M 48 53 C 38 28 65 18 85 28 C 80 38 60 46 48 53 Z" fill="#ffffff" fill-opacity="0.05" />
+    
+    <!-- Right bell -->
+    <path d="M 152 53 C 162 28 135 18 115 28 C 120 38 140 46 152 53 Z" fill="#ffffff" fill-opacity="0.05" />
+    
+    <!-- Left ringing marks -->
+    <path d="M 38 42 C 32 32 32 22 42 12" />
+    <path d="M 28 45 C 20 35 20 22 32 8" />
+    
+    <!-- Right ringing marks -->
+    <path d="M 162 42 C 168 32 168 22 158 12" />
+    <path d="M 172 45 C 180 35 180 22 168 8" />
+    
+    <!-- Left leg -->
+    <path d="M 62 166 Q 52 186 65 186 Q 75 186 78 163" />
+    
+    <!-- Right leg -->
+    <path d="M 138 166 Q 148 186 135 186 Q 125 186 122 163" />
+    
+    <!-- Ground line -->
+    <path d="M 25 186 L 52 185" />
+    <path d="M 80 186 L 120 185" />
+    <path d="M 148 186 L 175 185" />
+    
+    <!-- Clock ticks -->
+    <path d="M 98 56 L 99 66" />
+    <path d="M 98 145 L 97 135" />
+    <path d="M 56 102 L 66 101" />
+    <path d="M 145 102 L 135 103" />
+    
+    <!-- Minute hand -->
+    <path d="M 98 100 Q 96 85 95 65" />
+    
+    <!-- Hour hand -->
+    <path d="M 98 100 Q 108 110 118 120" />
+    
+  </g>
+  
+  <g fill="#ffffff" stroke="#ffffff" stroke-linejoin="round">
+    <!-- Center pin -->
+    <circle cx="98" cy="100" r="3.5" fill="none" stroke-width="3" />
+    
+    <!-- Minute hand arrowhead -->
+    <path d="M 88 72 L 94 55 L 102 69 Z" stroke-width="2" />
+    
+    <!-- Hour hand arrowhead -->
+    <path d="M 110 122 L 125 127 L 118 112 Z" stroke-width="2" />
+  </g>
+</svg>

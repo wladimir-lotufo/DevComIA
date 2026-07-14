@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="slide-container">
+    <div class="slide-header">
+      <div class="slide-badge">Engenharia & Produção</div>
+      <h1 class="slide-title">Spec-Driven Development (SDD) 📐</h1>
+    </div>
+    <div class="slide-content" style="display: flex; gap: 2rem; align-items: center; justify-content: center; height: 100%;">
+      <div class="glass-card" style="flex: 1; max-width: 600px;">
+        <div class="card-icon">📋</div>
+        <h2 class="card-title">Guiado por Especificação</h2>
+        <ul style="color: var(--text-muted); margin-top: 1rem; line-height: 1.6; padding-left: 1.5rem; font-size: 1.1rem;">
+          <li>Regras, arquitetura e testes definidos <strong>antes</strong> da implementação.</li>
+          <li>A IA segue as regras estritamente sem desvios.</li>
+          <li><strong>Objetivo:</strong> Precisão, previsibilidade e escalabilidade.</li>
+          <li><span style="color: #99ff99;">✅ Vantagem:</span> Código confiável e sustentável.</li>
+          <li><span style="color: #ff9999;">❌ Desvantagem:</span> Menos dinâmico, requer esforço prévio.</li>
+        </ul>
+      </div>
+      <div class="glass-card" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; background: rgba(15, 23, 42, 0.8);">
+        <h3 style="color: var(--text-color); font-size: 1.2rem; margin: 0;">O Fluxo</h3>
+        <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.1);">
+            <div style="color: #93c5fd; font-weight: bold; margin-bottom: 0.5rem;">1. Regras de Negócio</div>
+            <div style="color: #cbd5e1; margin-bottom: 0.5rem;">↓</div>
+            <div style="color: #a78bfa; font-weight: bold; margin-bottom: 0.5rem;">2. Spec Documentada</div>
+            <div style="color: #cbd5e1; margin-bottom: 0.5rem;">↓</div>
+            <div style="color: #818cf8; font-weight: bold; margin-bottom: 0.5rem;">3. IA/Dev Implementa</div>
+            <div style="color: #cbd5e1; margin-bottom: 0.5rem;">↻ (Testes Falharam?)</div>
+            <div style="color: #34d399; font-weight: bold;">4. Deploy Seguro</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') window.parent.postMessage('next', '*');
+      if (e.key === 'ArrowLeft') window.parent.postMessage('prev', '*');
+    });
+  </script>
+</body>
+</html>

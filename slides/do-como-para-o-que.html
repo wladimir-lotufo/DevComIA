@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="slide-container">
+    <div class="slide-header">
+      <div class="slide-badge">Mudança 1</div>
+      <h1 class="slide-title">Do "Como" para o "O Que"</h1>
+    </div>
+    <div class="slide-content">
+      <div class="glass-card">
+        <div class="card-icon">🎯</div>
+        <h2 class="card-title">Spec-Driven Development</h2>
+        <p class="card-text">
+          O papel do desenvolvedor muda de "digitador de código" para <strong>Orquestrador/Arquiteto</strong>.
+        </p>
+        <ul style="color: var(--text-muted); margin-top: 1rem; line-height: 1.6; padding-left: 1.5rem; font-size: 1.1rem;">
+          <li>A IA assume o trabalho de escrever a sintaxe básica (boilerplate).</li>
+          <li>Foco total em <strong>especificações claras</strong> e design de sistema.</li>
+          <li>A habilidade principal é validar o código gerado em vez de apenas criá-lo.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') window.parent.postMessage('next', '*');
+      if (e.key === 'ArrowLeft') window.parent.postMessage('prev', '*');
+    });
+  </script>
+</body>
+</html>

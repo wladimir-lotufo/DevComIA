@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="slide-container">
+    <div class="slide-header">
+      <div class="slide-badge">Mudança 3</div>
+      <h1 class="slide-title">Hiper-Agilidade</h1>
+    </div>
+    <div class="slide-content">
+      <div class="glass-card">
+        <div class="card-icon">⚡</div>
+        <h2 class="card-title">Micro-Sprints</h2>
+        <p class="card-text">
+          O ciclo de feedback passa de semanas para horas ou até minutos.
+        </p>
+        <ul style="color: var(--text-muted); margin-top: 1rem; line-height: 1.6; padding-left: 1.5rem; font-size: 1.1rem;">
+          <li>Redução dramática do tempo entre a concepção da ideia e um protótipo funcional.</li>
+          <li>Protótipos gerados em tempo real durante reuniões de planejamento (Plannings).</li>
+          <li>Entregas contínuas baseadas em experimentação ultrarrápida.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') window.parent.postMessage('next', '*');
+      if (e.key === 'ArrowLeft') window.parent.postMessage('prev', '*');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="slide-container">
+    <div class="slide-header">
+      <div class="slide-badge">Conclusão</div>
+      <h1 class="slide-title">O Melhor dos Dois Mundos 🤝</h1>
+    </div>
+    <div class="slide-content">
+      <div class="glass-card" style="text-align: center; padding: 3rem;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">⚖️</div>
+        <h2 class="card-title">A Recomendação</h2>
+        <div style="display: flex; gap: 2rem; justify-content: center; margin-top: 2rem;">
+            <div style="flex: 1; padding: 1.5rem; background: rgba(15, 23, 42, 0.5); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🌊</div>
+                <h3 style="color: #60a5fa;">Vibe Coding</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Use para Provas de Conceito (PoCs), validação rápida de ideias e experimentação de UI.</p>
+            </div>
+            <div style="flex: 1; padding: 1.5rem; background: rgba(15, 23, 42, 0.5); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">📐</div>
+                <h3 style="color: #a78bfa;">Spec-Driven</h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Use para sistemas críticos, regras de negócio complexas e código que irá para produção.</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') window.parent.postMessage('next', '*');
+      if (e.key === 'ArrowLeft') window.parent.postMessage('prev', '*');
+    });
+  </script>
+</body>
+</html>

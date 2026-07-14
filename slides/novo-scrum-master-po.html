@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="slide-container">
+    <div class="slide-header">
+      <div class="slide-badge">Mudança 4</div>
+      <h1 class="slide-title">O Novo Scrum Master / PO</h1>
+    </div>
+    <div class="slide-content">
+      <div class="glass-card">
+        <div class="card-icon">📊</div>
+        <h2 class="card-title">Automação da Gestão Ágil</h2>
+        <p class="card-text">
+          A IA automatiza a burocracia, liberando líderes para o foco estratégico e humano.
+        </p>
+        <ul style="color: var(--text-muted); margin-top: 1rem; line-height: 1.6; padding-left: 1.5rem; font-size: 1.1rem;">
+          <li>Refinamento automático de tarefas, geração de atas e user stories por IA.</li>
+          <li>Análise preditiva para antecipar gargalos no projeto usando dados históricos da equipe.</li>
+          <li>Líderes focam 100% no alinhamento com clientes e na gestão da mudança (pessoas).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') window.parent.postMessage('next', '*');
+      if (e.key === 'ArrowLeft') window.parent.postMessage('prev', '*');
+    });
+  </script>
+</body>
+</html>

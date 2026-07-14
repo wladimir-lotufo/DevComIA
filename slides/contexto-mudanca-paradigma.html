@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="slide-container">
+    <div class="slide-header">
+      <div class="slide-badge">1. O Novo Normal no Desenvolvimento</div>
+      <h1 class="slide-title">Contexto e Mudança de Paradigma</h1>
+    </div>
+    
+    <div class="slide-content">
+      <div class="glass-card">
+        <div class="card-icon">🏆</div>
+        <h2 class="card-title">O "Santo Graal" do Momento</h2>
+        <p class="card-text">
+          A Inteligência Artificial deixou de ser ficção e virou a <span class="highlight">principal alavanca de produtividade</span> na engenharia de software atual.
+        </p>
+      </div>
+
+      <div class="glass-card">
+        <div class="card-icon">🧠</div>
+        <h2 class="card-title">O Foco do Engenheiro</h2>
+        <p class="card-text">
+          Enquanto o mundo fala de imagens e vídeos, nosso foco são as <span class="highlight">LLMs</span>. Código-fonte é texto estruturado, e as LLMs são as maiores especialistas absolutas em sua manipulação.
+        </p>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') window.parent.postMessage('next', '*');
+      if (e.key === 'ArrowLeft') window.parent.postMessage('prev', '*');
+    });
+  </script>
+</body>
+</html>

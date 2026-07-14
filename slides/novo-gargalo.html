@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="slide-container">
+    <div class="slide-header">
+      <div class="slide-badge">Mudança 5</div>
+      <h1 class="slide-title">O Novo Gargalo</h1>
+    </div>
+    <div class="slide-content">
+      <div class="glass-card">
+        <div class="card-icon">🔍</div>
+        <h2 class="card-title">Da Criação para a Revisão</h2>
+        <p class="card-text">
+          Com a máquina gerando código em massa, a validação humana torna-se essencial.
+        </p>
+        <ul style="color: var(--text-muted); margin-top: 1rem; line-height: 1.6; padding-left: 1.5rem; font-size: 1.1rem;">
+          <li>Escrever código não é mais o principal gargalo do fluxo de trabalho.</li>
+          <li>O <strong>Code Review</strong> e a garantia de qualidade (QA) tornam-se os processos mais críticos.</li>
+          <li>Necessidade de novas práticas para não acumular "débito técnico gerado por IA".</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') window.parent.postMessage('next', '*');
+      if (e.key === 'ArrowLeft') window.parent.postMessage('prev', '*');
+    });
+  </script>
+</body>
+</html>

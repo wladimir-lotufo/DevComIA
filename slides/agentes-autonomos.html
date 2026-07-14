@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="slide-container">
+    <div class="slide-header">
+      <div class="slide-badge">Mudança 2</div>
+      <h1 class="slide-title">Agentes Autônomos</h1>
+    </div>
+    <div class="slide-content">
+      <div class="glass-card">
+        <div class="card-icon">🤖</div>
+        <h2 class="card-title">Agentic Workflows</h2>
+        <p class="card-text">
+          A equipe Ágil ganha novos membros não-humanos trabalhando em paralelo.
+        </p>
+        <ul style="color: var(--text-muted); margin-top: 1rem; line-height: 1.6; padding-left: 1.5rem; font-size: 1.1rem;">
+          <li>Agentes atuam como Desenvolvedores, QA (testes automatizados) e DevOps.</li>
+          <li>O desenvolvedor humano atua como um <strong>Tech Lead</strong>, revisando e orquestrando o trabalho.</li>
+          <li>Maior autonomia da IA para resolver bugs e implementar features inteiras a partir de um prompt.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script>
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') window.parent.postMessage('next', '*');
+      if (e.key === 'ArrowLeft') window.parent.postMessage('prev', '*');
+    });
+  </script>
+</body>
+</html>
