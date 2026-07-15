@@ -18,17 +18,17 @@ Este documento estrutura a apresentação com um foco de **20% em Contexto/Teori
   3. IA Preditiva Machine Learning
   4. Melhor Caminho A*
   5. E outros...
-* **Visual:** **[img: .assets/ai_types.svg | x: 0, y: 0]**
+* **Visual:** **[img: .assets/ai_types.svg | x: 7, y: -6, w: 324]**
 
 ### 3. LLM
-* **Transição:** De: "2. O que é IA?" | Imagem de conexão: [img: .assets/seta.svg | x: 250, y: 0 | w: 100 | autoNext: true] (Clique 1) | Efeito: Aparecer
+* **Transição:** De: "2. O que é IA?" | Imagem de conexão: [img: .assets/seta.svg | x: 237, y: -2, w: 100, autoNext: true] (Clique 1) | Efeito: Aparecer
 * **Conteúdo:** Vamos focar nosso bate-papo nas LLMs, que nada mais são que redes neurais. Como a LLM funciona, ela recebe um Contexto, Processa, e gera um Resultado. Então se você muda o contexto, o resultado será diferente. Esta LLM é uma API, um serviço que as aplicaçoes chamam para usar a IA dentro delas. Sugestão imagem: @brain2.svg.
 * **Visual:** **[img: .assets/llm_process.svg | x: 504, y: -1]** (Clique 2)
 
 ### 4. Provedores de IA
-* **Transição:** De: "3. LLM" | Imagem de conexão: [img: .assets/seta.svg | x: 750, y: 0 | w: 100 | autoNext: true] (Clique 1) | Efeito: Aparecer
+* **Transição:** De: "3. LLM" | Imagem de conexão: [img: .assets/seta.svg | x: 770, y: 95, w: 100, r: 35, autoNext: true] (Clique 1) | Efeito: Aparecer
 * **Conteúdo:** Estes serviços de LLMs são mantidos por empresas como OpenAI, Google, Anthropic e outras. Alternativa: Criar seu próprio servidor de LLM (ex: Ollama).
-* **Visual:** **[img: (a definir) | x: 1000, y: 0]** (Clique 2)
+* **Visual:** **[img: (a definir) | x: 637, y: -230]** (Clique 2)
 
 ### 5. Tokens
 * **Transição:** De: "3. LLM" | Imagem de conexão: [img: .assets/seta.svg | x: 504, y: 250 | w: 100 | autoNext: true] (Clique 1) | Efeito: Aparecer
@@ -55,7 +55,7 @@ Baixo impacto se houver necessidade de troca de IDE agentico.
   * **Vantagem:** Prototipagem relâmpago, criatividade extrema.
   * **Desvantagem:** Código difícil de manter e escalar ("caixa preta").
 
-- [x] **[img: .assets/vibe_coding.svg | x: 1000, y: 0]**
+- [x] **[img: .assets/vibe_coding.svg | x: 1023, y: 191]**
 
 ### 6. Spec-Driven Development 📐 (Engenharia/Produção):
   * Especificações e regras restritas (testes, docs, arquitetura) definidas *antes* do código. A IA segue a regra estritamente.

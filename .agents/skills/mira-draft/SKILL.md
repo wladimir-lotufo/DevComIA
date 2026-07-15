@@ -25,16 +25,16 @@ Quando chamado em uma pasta vazia (ou nova pasta de apresentação), a IA deve:
 Quando o usuário pede para "consolidar", "atualizar tela", "montar slide", ou sempre que você (a IA) adicionar uma imagem nova no roteiro:
 1. **Leia** o arquivo `roteiro.md`.
 2. Para cada imagem mencionada que possua coordenadas, extraia o path (ex: `.assets/minha_img.svg`) e suas coordenadas (`x` e `y`).
-3. **Escreva** (Injete) o código abaixo no arquivo `[nomeDaPasta].html`, exatamente entre as marcações `<!-- MIRA: INICIO ASSETS -->` e `<!-- MIRA: FIM ASSETS -->`:
-   `<img src=".assets/arquivo.svg" class="mira-asset" style="left: Xpx; top: Ypx;">`
+3. **Escreva** (Injete) o código abaixo no arquivo `[nomeDaPasta].html`, exatamente entre as marcações `/* MIRA: INICIO JSON ASSETS */` e `/* MIRA: FIM JSON ASSETS */`:
+   `{ src: ".assets/arquivo.svg", x: X, y: Y, w: W, r: R },`
 4. Se uma imagem for gerada/alterada, assegure-se de que a dupla de arquivos (`roteiro.md` e o HTML) estão em sincronia.
 
 ---
 
 ## 🔧 Regras de Atuação (MANDATORY)
 
-1. **Single Source of Truth (SSOT):** O arquivo `roteiro.md` manda no posicionamento. Se o usuário quiser que a imagem mude de lugar, você altera o valor de `x` e `y` no roteiro, e então replica isso gerando a tag HTML atualizada. 
-   - Padrão esperado no roteiro: `[img: .assets/arquivo.svg | x:500, y:300]` (ou notação semelhante).
+1. **Single Source of Truth (SSOT):** O arquivo `roteiro.md` manda no posicionamento, tamanho e rotação. Se o usuário quiser que a imagem mude, você altera os valores de `x`, `y`, `w` (width) e `r` (rotation) no roteiro, e então replica isso gerando o JSON atualizado. 
+   - Padrão esperado no roteiro: `[img: .assets/arquivo.svg | x:500, y:300, w:400, r:15]` (ou notação semelhante).
    - **Transições e Coreografia:** O roteiro suporta a declaração explícita de fluxo usando "Transições de Entrada". Em vez de separar slides e transições rigidamente, a transição (ex: seta de conexão) pertence ao slide de destino, declarando sua origem no campo `De:`.
      - *Exemplo:* `* **Transição:** De: "2. O que é IA?" | Imagem de conexão: [img: .assets/seta.svg | x: 250, y: 0] (Clique 1)`
      - O agente deve respeitar a ordem desses eventos (Cliques) e o mapeamento de conexões não-lineares ao consolidar o HTML (ex: injetando atributos `data-step` para animações em ordem).
@@ -45,7 +45,7 @@ Quando o usuário pede para "consolidar", "atualizar tela", "montar slide", ou s
    - **Paleta e Elementos Vazados:** Privilegie usar uma paleta de cores primárias básicas (ex: traços em Cyan, Laranja, Chumbo). Proponha desenhos vazados, usando predominantemente *linhas coloridas* ao invés de blocos maciços de cor.
    - **Textos Integrados:** Os textos dentro dos SVGs também podem e devem adotar as mesmas cores da paleta para manter a coesão do design.
 5. **Organização de Scripts (.scripts/):** É OBRIGATÓRIO que todo arquivo gerador (scripts Python `.py`, scripts Node, bash, etc.) criado durante a sessão seja salvo na pasta `.scripts/` dentro do diretório da apresentação, e não na raiz.
-6. **Consolidação em Lote (Clipboard):** Quando o usuário colar no chat um texto do tipo `Atualize o roteiro.md com as seguintes coordenadas ajustadas:`, você deve atualizar o `roteiro.md` com os novos valores de `x` e `y` e imediatamente acionar o comando implícito `/draft consolidar` para injetar o layout atualizado no HTML.
+6. **Consolidação em Lote (Clipboard):** Quando o usuário colar no chat um texto do tipo `Atualize o roteiro.md com as seguintes coordenadas ajustadas:`, você deve atualizar o `roteiro.md` com os novos valores de `x`, `y`, `w` e `r` e imediatamente acionar o comando implícito `/draft consolidar` para injetar o layout atualizado no HTML.
 7. **Fundo Transparente:** As imagens SVG geradas DEVEM SEMPRE ter fundo transparente. Nunca adicione `<rect>` de fundo branco, preto ou colorido que preencha o canvas inteiro simulando background.
 8. **Limites do Canvas (ViewBox):** Ao gerar os SVGs, verifique rigorosamente se todos os textos e imagens/desenhos CABEM na janela definida pelo viewBox. Nunca deixe textos cortados pelas bordas do SVG.
 9. **Contraste no Fundo Branco:** Como o fundo do visualizador (Viewer) é branco, **NUNCA utilize linhas, traços ou textos na cor branca (`#ffffff` ou `white`)**, pois eles ficarão invisíveis. Use cores escuras ou os tons vivos da paleta para garantir a legibilidade.

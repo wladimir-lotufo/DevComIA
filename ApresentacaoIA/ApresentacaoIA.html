@@ -120,9 +120,69 @@
     
     .edit-only { display: none; }
     .edit-mode .edit-only { display: inline-block; }
-    .edit-mode .mira-asset { cursor: grab; border: 2px dashed rgba(255,144,77,0.5); border-radius: 8px; }
+    .edit-mode .mira-asset { cursor: grab; }
     .edit-mode .mira-asset:active { cursor: grabbing; }
 
+    #edit-overlay {
+      position: absolute;
+      border: 2px solid #FF904D;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 1000;
+      box-sizing: border-box;
+    }
+    #edit-overlay .resize-handle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border: 2px solid #FF904D;
+      pointer-events: auto;
+      border-radius: 2px;
+    }
+    #edit-overlay .nw { top: -7px; left: -7px; cursor: nwse-resize; }
+    #edit-overlay .ne { top: -7px; right: -7px; cursor: nesw-resize; }
+    #edit-overlay .sw { bottom: -7px; left: -7px; cursor: nesw-resize; }
+    #edit-overlay .se { bottom: -7px; right: -7px; cursor: nwse-resize; }
+    
+    #edit-overlay .rotate-handle {
+      position: absolute;
+      top: -36px;
+      left: 50%;
+      margin-left: -7px;
+      width: 14px;
+      height: 14px;
+      background: #FF904D;
+      border-radius: 50%;
+      pointer-events: auto;
+      cursor: crosshair;
+    }
+    #edit-overlay .rotate-line {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      width: 2px;
+      height: 22px;
+      background: #FF904D;
+      margin-left: -1px;
+    }
+
+    #edit-instructions {
+      position: fixed;
+      bottom: 15px;
+      left: 15px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #333;
+      z-index: 9999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: none;
+    }
+    .edit-mode #edit-instructions {
+      display: block;
+    }
     
     #coordinates {
       position: fixed;
@@ -153,10 +213,26 @@
     <button id="btn-reset" class="btn">Reset</button>
   </div>
 
+  <div id="edit-instructions" class="edit-only">
+    <b>Selecione</b> uma imagem para ver os controles.<br>
+    <b>Arraste</b> a imagem para mover.<br>
+    <b>Cantos</b> para redimensionar.<br>
+    <b>Alça superior</b> para rotacionar.
+  </div>
+
   <div id="coordinates">x: 0, y: 0</div>
 
   <div id="viewport">
-    <div id="canvas"></div>
+    <div id="canvas">
+      <div id="edit-overlay" style="display: none;">
+        <div class="resize-handle nw" data-action="resize"></div>
+        <div class="resize-handle ne" data-action="resize"></div>
+        <div class="resize-handle sw" data-action="resize"></div>
+        <div class="resize-handle se" data-action="resize"></div>
+        <div class="rotate-handle" data-action="rotate"></div>
+        <div class="rotate-line"></div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -181,6 +257,8 @@
     MIRA_SLIDES.forEach(s => {
       s.origX = s.x;
       s.origY = s.y;
+      s.origW = s.w;
+      s.origR = s.r || 0;
     });
     const canvas = document.getElementById('canvas');
     const btnReset = document.getElementById('btn-reset');
@@ -204,6 +282,26 @@
     let startX, startY;
     let initialTranslateX, initialTranslateY;
     let editMode = false;
+    
+    let isTransforming = false;
+    let transformAction = null;
+    let activeAsset = null;
+    let baseWidth = 0;
+    let baseRotation = 0;
+    const overlay = document.getElementById('edit-overlay');
+
+    function updateOverlay() {
+      if (!activeAsset || !editMode) {
+        overlay.style.display = 'none';
+        return;
+      }
+      overlay.style.display = 'block';
+      overlay.style.left = activeAsset.style.left;
+      overlay.style.top = activeAsset.style.top;
+      overlay.style.width = activeAsset.clientWidth + 'px';
+      overlay.style.height = activeAsset.clientHeight + 'px';
+      overlay.style.transform = activeAsset.style.transform;
+    }
 
     function updateRulesBackground() {
       if (viewport.classList.contains('show-rules')) {
@@ -257,6 +355,7 @@
       img.style.left = `${slide.x}px`;
       img.style.top = `${slide.y}px`;
       if (slide.w) img.style.width = `${slide.w}px`;
+      img.style.transform = `translate(-50%, -50%) rotate(${slide.r || 0}deg)`;
       
       canvas.appendChild(img);
       renderedImages.push(img);
@@ -290,6 +389,18 @@
 
     // Intercepta o clique esquerdo (Avançar) e o clique direito (Voltar)
     viewport.addEventListener('mousedown', (e) => {
+      if (editMode && e.target.closest('#edit-overlay') && e.target.dataset.action) {
+         e.preventDefault();
+         isTransforming = true;
+         transformAction = e.target.dataset.action;
+         
+         const slideIndex = renderedImages.indexOf(activeAsset);
+         const slide = MIRA_SLIDES[slideIndex];
+         baseWidth = slide.w || activeAsset.clientWidth;
+         baseRotation = slide.r || 0;
+         return;
+      }
+
       if (e.button === 1 || (e.button === 0 && editMode && !e.target.classList.contains('mira-asset'))) {
         e.preventDefault(); 
         isDragging = true;
@@ -297,11 +408,19 @@
         startY = e.clientY;
         initialTranslateX = translateX;
         initialTranslateY = translateY;
+        
+        if (e.button === 0 && editMode) {
+            activeAsset = null;
+            updateOverlay();
+        }
         return;
       }
       
       if (e.button === 0 && editMode && e.target.classList.contains('mira-asset')) {
         e.preventDefault();
+        activeAsset = e.target;
+        updateOverlay();
+        
         isDraggingAsset = true;
         draggedAsset = e.target;
         assetStartX = e.clientX;
@@ -338,6 +457,36 @@
         coordDisplay.style.display = 'none';
       }
 
+      if (isTransforming && activeAsset) {
+        const slideIndex = renderedImages.indexOf(activeAsset);
+        const slide = MIRA_SLIDES[slideIndex];
+        
+        const centerX = window.innerWidth / 2 + translateX;
+        const centerY = window.innerHeight / 2 + translateY;
+        
+        const canvasX = (e.clientX - centerX) / scale;
+        const canvasY = (e.clientY - centerY) / scale;
+
+        const dx = canvasX - slide.x;
+        const dy = canvasY - slide.y;
+
+        if (transformAction === 'rotate') {
+            let angle = Math.atan2(dy, dx) * 180 / Math.PI;
+            slide.r = (angle + 90) % 360;
+            activeAsset.style.transform = `translate(-50%, -50%) rotate(${Math.round(slide.r)}deg)`;
+            updateOverlay();
+        } else if (transformAction === 'resize') {
+            const theta = -baseRotation * Math.PI / 180;
+            const localX = dx * Math.cos(theta) - dy * Math.sin(theta);
+            
+            const newWidth = Math.max(50, Math.abs(localX) * 2);
+            slide.w = newWidth;
+            activeAsset.style.width = `${Math.round(newWidth)}px`;
+            updateOverlay();
+        }
+        return;
+      }
+
       if (isDraggingAsset && draggedAsset) {
         const dx = (e.clientX - assetStartX) / scale;
         const dy = (e.clientY - assetStartY) / scale;
@@ -350,6 +499,12 @@
         
         assetStartX = e.clientX;
         assetStartY = e.clientY;
+        
+        const idx = renderedImages.indexOf(draggedAsset);
+        MIRA_SLIDES[idx].x = currentLeft + dx;
+        MIRA_SLIDES[idx].y = currentTop + dy;
+        updateOverlay();
+        
         return;
       }
 
@@ -366,6 +521,7 @@
     });
 
     window.addEventListener('mouseup', (e) => {
+      isTransforming = false;
       if(e.button === 1 || (e.button === 0 && editMode)) {
         isDragging = false;
         if (isDraggingAsset && draggedAsset) {
@@ -390,6 +546,7 @@
     });
 
     viewport.addEventListener('wheel', (e) => {
+
       e.preventDefault();
       canvas.classList.remove('animating'); // Cancela auto-pan no scroll
       
@@ -428,6 +585,7 @@
             img.style.left = `${slide.x}px`;
             img.style.top = `${slide.y}px`;
             if (slide.w) img.style.width = `${slide.w}px`;
+            img.style.transform = `translate(-50%, -50%) rotate(${slide.r || 0}deg)`;
             canvas.appendChild(img);
             renderedImages.push(img);
           }
@@ -442,6 +600,8 @@
         btnEdit.textContent = 'Modo: Apresentação';
         btnEdit.classList.remove('active');
         viewport.classList.remove('show-rules');
+        activeAsset = null;
+        updateOverlay();
         renderedImages.forEach(img => {
           img.removeAttribute('title');
         });
@@ -453,9 +613,13 @@
       let hasChanges = false;
       
       MIRA_SLIDES.forEach((slide) => {
-        if (slide.x !== slide.origX || slide.y !== slide.origY) {
+        if (slide.x !== slide.origX || slide.y !== slide.origY || slide.w !== slide.origW || (slide.r || 0) !== slide.origR) {
           hasChanges = true;
-          promptLines.push(`- [img: ${slide.src} | x: ${slide.x}, y: ${slide.y}]`);
+          let extra = "";
+          if (slide.w) extra += `, w: ${Math.round(slide.w)}`;
+          if (slide.r) extra += `, r: ${Math.round(slide.r)}`;
+          if (slide.autoNext) extra += `, autoNext: true`;
+          promptLines.push(`- [img: ${slide.src} | x: ${slide.x}, y: ${slide.y}${extra}]`);
         }
       });
 
