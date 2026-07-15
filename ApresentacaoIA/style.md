@@ -20,7 +20,7 @@ Para traduzir a filosofia acima em código SVG para IAs e Desenvolvedores, siga 
 
 ### Canvas e Fundo
 - **ViewBox:** Sempre fixado em `0 0 200 200`. Facilita o cálculo mental das coordenadas. O objeto deve ocupar o centro, com pelo menos `10px` de margem de respiro.
-- **Background Anti-Dark-Mode:** Todo arquivo **DEVE** conter a tag `<rect x="0" y="0" width="200" height="200" fill="#ffffff" />` na primeira camada do desenho.
+- **Background:** As imagens SVG geradas DEVEM SEMPRE ter fundo transparente (não inclua `<rect>` de fundo cobrindo o canvas inteiro).
 
 ### Paleta de Cores Base
 - **Traço Principal (Caneta):** `#1a1a1a` (Cinza muito escuro). Evite o `#000000` (preto absoluto) para um contraste mais elegante e realista.
@@ -56,9 +56,7 @@ Sempre que for gerar um SVG novo no estilo Mira Sketch (ou injetar esse formato 
        Design System: MIRA SKETCH
        ========================================== -->
   
-  <!-- 1. Fundo Base (Proteção contra Dark Mode) -->
-  <rect x="0" y="0" width="200" height="200" fill="#ffffff" />
-  
+  <!-- 1. Fundo Base (Transparente) -->
   <!-- 2. Preenchimento do Corpo (Esconde a sobreposição traseira) -->
   <!-- Ex: <path d="..." fill="#ffffff" /> -->
   

@@ -21,12 +21,27 @@ Quando chamado em uma pasta vazia (ou nova pasta de apresentação), a IA deve:
 2. Criar a pasta `.assets/`.
 3. Copiar o template de Roteiro de `.agents/skills/mira-draft/templates/roteiro.md` para iniciar o documento base.
 
+### `/draft sugerir`
+Comando da etapa de Planejamento Visual (Planner). Quando acionado:
+1. Varre o arquivo `roteiro.md` procurando por slides que possuam a marcação de imagem pendente `(a definir)`.
+2. Para cada slide pendente, analisa a propriedade `* **Conteúdo:**`.
+3. Preenche ou cria a propriedade `* **Imagem:** {descrição detalhada dos elementos visuais, metáforas e disposição esperados}`.
+4. **NÃO GERA CÓDIGO SVG**. Apenas escreve as descrições no Markdown para o usuário revisar.
+
+### `/draft desenhar`
+Comando da etapa de Execução Visual (Builder). Quando acionado:
+1. Varre o arquivo `roteiro.md` focando APENAS nas seções cuja propriedade `* **Imagem:**` já esteja preenchida com as descrições.
+2. Executa a criação do arquivo `.svg` na pasta `.assets/` **estritamente baseado** na descrição aprovada/revisada na propriedade `* **Imagem:**` (aplicando as regras de Vibe Coding).
+3. Atualiza a propriedade `* **Visual:**` substituindo `(a definir)` pelo caminho do novo arquivo gerado.
+4. Em seguida, roda implicitamente um `/draft consolidar` para atualizar o HTML.
+
 ### `/draft consolidar` (ou atualizações implícitas)
 Quando o usuário pede para "consolidar", "atualizar tela", "montar slide", ou sempre que você (a IA) adicionar uma imagem nova no roteiro:
 1. **Leia** o arquivo `roteiro.md`.
 2. Para cada imagem mencionada que possua coordenadas, extraia o path (ex: `.assets/minha_img.svg`) e suas coordenadas (`x` e `y`).
 3. **Escreva** (Injete) o código abaixo no arquivo `[nomeDaPasta].html`, exatamente entre as marcações `/* MIRA: INICIO JSON ASSETS */` e `/* MIRA: FIM JSON ASSETS */`:
    `{ src: ".assets/arquivo.svg", x: X, y: Y, w: W, r: R },`
+   - **Exceção (Placeholder):** Se o roteiro contiver `(a definir)` ou imagem pendente, use `{ src: ".assets/tbd.svg", w: 200, label: "Título da Seção/Slide" }` extraindo o título do slide atual para facilitar a identificação.
 4. Se uma imagem for gerada/alterada, assegure-se de que a dupla de arquivos (`roteiro.md` e o HTML) estão em sincronia.
 
 ---
@@ -49,6 +64,7 @@ Quando o usuário pede para "consolidar", "atualizar tela", "montar slide", ou s
 7. **Fundo Transparente:** As imagens SVG geradas DEVEM SEMPRE ter fundo transparente. Nunca adicione `<rect>` de fundo branco, preto ou colorido que preencha o canvas inteiro simulando background.
 8. **Limites do Canvas (ViewBox):** Ao gerar os SVGs, verifique rigorosamente se todos os textos e imagens/desenhos CABEM na janela definida pelo viewBox. Nunca deixe textos cortados pelas bordas do SVG.
 9. **Contraste no Fundo Branco:** Como o fundo do visualizador (Viewer) é branco, **NUNCA utilize linhas, traços ou textos na cor branca (`#ffffff` ou `white`)**, pois eles ficarão invisíveis. Use cores escuras ou os tons vivos da paleta para garantir a legibilidade.
+10. **Imagens Embutidas (Base64):** Como os SVGs da apresentação são carregados via tag `<img>` pelo visualizador HTML, os navegadores aplicam políticas de segurança que bloqueiam o carregamento de imagens externas/locais relativas (ex: `<image href="logos/img.png">`). Qualquer logo externo, foto ou raster adicionado dentro de um arquivo `.svg` **DEVE OBRIGATORIAMENTE ser convertido para Base64** (ex: `data:image/png;base64,...`) para garantir que o SVG seja 100% *self-contained* e que não fique invisível para o usuário final.
 
 ---
 

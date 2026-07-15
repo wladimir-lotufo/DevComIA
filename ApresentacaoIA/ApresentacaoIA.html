@@ -68,6 +68,25 @@
       to { opacity: 1; }
     }
 
+    .mira-label {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: bold;
+      color: #FF904D;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px dashed #FF904D;
+      text-align: center;
+      max-width: 180px;
+      z-index: 10;
+      opacity: 0;
+      animation: fadeIn 0.4s forwards;
+    }
+
     #ui-menu {
       position: fixed;
       top: 15px;
@@ -240,14 +259,17 @@
     // Lê apenas os itens marcados com "- [x]" no roteiro.md
     const MIRA_SLIDES = [
       /* MIRA: INICIO JSON ASSETS */
-      { src: ".assets/ai_types.svg", x: 0, y: 0 },
-      { src: ".assets/seta.svg", x: 250, y: 0, w: 100, autoNext: true },
-      { src: ".assets/llm_process.svg", x: 504, y: -1 },
-      { src: ".assets/seta.svg", x: 750, y: 0, w: 100, autoNext: true },
-      { src: "(a definir)", x: 1000, y: 0 },
-      { src: ".assets/seta.svg", x: 504, y: 250, w: 100, autoNext: true },
-      { src: "(a definir)", x: 504, y: 500 },
-      { src: ".assets/vibe_coding.svg", x: 1000, y: 0 }
+      { src: ".assets/ai_types.svg", x: 7, y: -6, w: 324 },
+      { src: ".assets/seta.svg", x: 237, y: -2, w: 100, autoNext: true },
+      { src: ".assets/llm_process.svg", x: 478, y: 4 },
+      { src: ".assets/seta.svg", x: 496, y: -181, w: 100, r: -89, autoNext: true },
+      { src: ".assets/providers.svg", x: 489, y: -315, w: 300 },
+      { src: ".assets/seta.svg", x: 413, y: 170, w: 100, r: 94, autoNext: true },
+      { src: ".assets/tokens.svg", x: 413, y: 325, w: 200 },
+      { src: ".assets/cifrao.svg", x: 494, y: 318, w: 96 },
+      { src: ".assets/seta.svg", x: 768, y: 15, w: 100, autoNext: true },
+      { src: ".assets/aplicacoes.svg", x: 1035, y: -1, w: 356 },
+      { src: ".assets/vibe_coding.svg", x: -468, y: -6 }
       /* MIRA: FIM JSON ASSETS */
     ];
 
@@ -350,15 +372,33 @@
       
       // Cria a imagem
       const img = document.createElement('img');
-      img.src = slide.src;
+      img.src = (slide.src === "(a definir)" || slide.src.includes("a definir")) ? ".assets/tbd.svg" : slide.src;
+      img.onerror = () => { 
+        img.src = '.assets/tbd.svg'; 
+        if (!slide.w) img.style.width = '200px'; 
+      };
       img.className = 'mira-asset';
       img.style.left = `${slide.x}px`;
       img.style.top = `${slide.y}px`;
-      if (slide.w) img.style.width = `${slide.w}px`;
+      if (slide.w) {
+        img.style.width = `${slide.w}px`;
+      } else if (img.src.includes('tbd.svg')) {
+        img.style.width = '200px';
+      }
       img.style.transform = `translate(-50%, -50%) rotate(${slide.r || 0}deg)`;
       
       canvas.appendChild(img);
       renderedImages.push(img);
+
+      if (slide.label) {
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'mira-label';
+        labelDiv.textContent = slide.label;
+        labelDiv.style.left = img.style.left;
+        labelDiv.style.top = img.style.top;
+        canvas.appendChild(labelDiv);
+        img._labelEl = labelDiv;
+      }
       
       panCameraTo(slide.x, slide.y);
 
@@ -375,7 +415,10 @@
       
       // Remove a última imagem
       const img = renderedImages.pop();
-      if (img) canvas.removeChild(img);
+      if (img) {
+        if (img._labelEl) canvas.removeChild(img._labelEl);
+        canvas.removeChild(img);
+      }
       
       currentSlideIndex--;
       
@@ -497,6 +540,11 @@
         draggedAsset.style.left = `${currentLeft + dx}px`;
         draggedAsset.style.top = `${currentTop + dy}px`;
         
+        if (draggedAsset._labelEl) {
+          draggedAsset._labelEl.style.left = draggedAsset.style.left;
+          draggedAsset._labelEl.style.top = draggedAsset.style.top;
+        }
+        
         assetStartX = e.clientX;
         assetStartY = e.clientY;
         
@@ -530,6 +578,11 @@
           draggedAsset.style.left = `${newX}px`;
           draggedAsset.style.top = `${newY}px`;
           
+          if (draggedAsset._labelEl) {
+            draggedAsset._labelEl.style.left = draggedAsset.style.left;
+            draggedAsset._labelEl.style.top = draggedAsset.style.top;
+          }
+          
           const index = renderedImages.indexOf(draggedAsset);
           if (index !== -1) {
             MIRA_SLIDES[index].x = newX;
@@ -561,8 +614,17 @@
       const mouseY = e.clientY - centerY;
 
       const ratio = newScale / scale;
-      translateX = mouseX - (mouseX - translateX) * ratio;
-      translateY = mouseY - (mouseY - translateY) * ratio;
+      let newTranslateX = mouseX - (mouseX - translateX) * ratio;
+      let newTranslateY = mouseY - (mouseY - translateY) * ratio;
+
+      // Aplica a atração "gravitacional" para o centro tanto no Zoom In quanto Zoom Out
+      // Intensidade reduzida (de 4 para 1.5) para ficar mais suave
+      const pullFactor = Math.min(Math.abs(delta) * 1.5, 1);
+      newTranslateX -= mouseX * pullFactor;
+      newTranslateY -= mouseY * pullFactor;
+
+      translateX = newTranslateX;
+      translateY = newTranslateY;
 
       scale = newScale;
       updateTransform();
@@ -580,14 +642,32 @@
             currentSlideIndex++;
             const slide = MIRA_SLIDES[currentSlideIndex];
             const img = document.createElement('img');
-            img.src = slide.src;
+            img.src = (slide.src === "(a definir)" || slide.src.includes("a definir")) ? ".assets/tbd.svg" : slide.src;
+            img.onerror = () => { 
+              img.src = '.assets/tbd.svg'; 
+              if (!slide.w) img.style.width = '200px'; 
+            };
             img.className = 'mira-asset';
             img.style.left = `${slide.x}px`;
             img.style.top = `${slide.y}px`;
-            if (slide.w) img.style.width = `${slide.w}px`;
+            if (slide.w) {
+              img.style.width = `${slide.w}px`;
+            } else if (img.src.includes('tbd.svg')) {
+              img.style.width = '200px';
+            }
             img.style.transform = `translate(-50%, -50%) rotate(${slide.r || 0}deg)`;
             canvas.appendChild(img);
             renderedImages.push(img);
+
+            if (slide.label) {
+              const labelDiv = document.createElement('div');
+              labelDiv.className = 'mira-label';
+              labelDiv.textContent = slide.label;
+              labelDiv.style.left = img.style.left;
+              labelDiv.style.top = img.style.top;
+              canvas.appendChild(labelDiv);
+              img._labelEl = labelDiv;
+            }
           }
         }
         renderedImages.forEach((img, i) => {
