@@ -11,36 +11,29 @@ Este documento estrutura a apresentação com um foco de **20% em Contexto/Teori
 * **O "Santo Graal" do Momento:** A IA deixou de ser ficção e virou a principal alavanca de produtividade.
 * **O Foco do Engenheiro:** Enquanto o mundo fala de imagens e vídeos, nosso foco são as **LLMs**. Código-fonte é texto, e LLMs são especialistas absolutas na manipulação de texto estruturado.
 
-
 ### 2. O que é IA?
-1. Conteúdo do slide:
-Hoje chamamos de IA um conjunto de algoritmos de software que simulam a inteligencia humana, como:
-  1. LLM 
+* **Conteúdo:** Hoje chamamos de "IA" um conjunto de algoritmos de software que simulam a inteligencia humana, como:
+  1. LLM (destaque e coloca do lado direito da imagem, e redistribui os demais)
   2. Visão Computacional
   3. IA Preditiva Machine Learning
   4. Melhor Caminho A*
   5. E outros...
-2. Imagem: **[img: .assets/ai_types.svg | x: 0, y: 0]**
+* **Visual:** **[img: .assets/ai_types.svg | x: 0, y: 0]**
 
-### 2. LLM
-1. Conteúdo do slide:
-Vamos focar nosso bate-papo nas LLMs, que nada mais são que redes neurais.
-Como a LLM funciona, ela recebe um Contexto, Processa, e gera um Resultado.
-Então se você muda o contexto, o resultado será diferente.
-Esta LLM é uma API, um serviço que as aplicaçoes chamam para usar a IA dentro delas. Cada aplicações tem um objetivo e formas diferentes de passar o contexto para a IA.
-Sugestão imagem usar para representar a LLM a imagem @brain2.svg.
-2. Imagem: **[img: .assets/llm_process.svg | x: 504, y: -1]**
+### 3. LLM
+* **Transição:** De: "2. O que é IA?" | Imagem de conexão: [img: .assets/seta.svg | x: 250, y: 0 | w: 100 | autoNext: true] (Clique 1) | Efeito: Aparecer
+* **Conteúdo:** Vamos focar nosso bate-papo nas LLMs, que nada mais são que redes neurais. Como a LLM funciona, ela recebe um Contexto, Processa, e gera um Resultado. Então se você muda o contexto, o resultado será diferente. Esta LLM é uma API, um serviço que as aplicaçoes chamam para usar a IA dentro delas. Sugestão imagem: @brain2.svg.
+* **Visual:** **[img: .assets/llm_process.svg | x: 504, y: -1]** (Clique 2)
 
-### 3. Provedores de IA
-1. Conteúdo do slide:
-Estes serviços de LLMs são mantidos por empresas como OpenAI, Google, Anthropic e outras, que cobram por estes serviços.
-Outra alternativa é você criar seu próprio servidor de LLM, por exemplo Ollma, e outros (ai o custo é de manter seu servidor).
-2. Imagem: **[img: (a denifir) | x: 200, y: -200]**
+### 4. Provedores de IA
+* **Transição:** De: "3. LLM" | Imagem de conexão: [img: .assets/seta.svg | x: 750, y: 0 | w: 100 | autoNext: true] (Clique 1) | Efeito: Aparecer
+* **Conteúdo:** Estes serviços de LLMs são mantidos por empresas como OpenAI, Google, Anthropic e outras. Alternativa: Criar seu próprio servidor de LLM (ex: Ollama).
+* **Visual:** **[img: (a definir) | x: 1000, y: 0]** (Clique 2)
 
-### 3. Tokens
-1. Conteúdo do slide: 
-Tokens são pedaços de palavras. Eles representam o "pedágio" ou o limite de banda. Injetar o contexto correto sem estourar o limite de tokens é a chave para a engenharia de IA.
-2. Imagem: **[img: (a denifir) | x: 0, y: 0]**
+### 5. Tokens
+* **Transição:** De: "3. LLM" | Imagem de conexão: [img: .assets/seta.svg | x: 504, y: 250 | w: 100 | autoNext: true] (Clique 1) | Efeito: Aparecer
+* **Conteúdo:** Tokens são pedaços de palavras. Eles representam o "pedágio" ou o limite de banda. Injetar o contexto correto sem estourar o limite de tokens é a chave para a engenharia de IA.
+* **Visual:** **[img: (a definir) | x: 504, y: 500]** (Clique 2)
 
 ### 4. O Novo Processo de Trabalho: Da Escrita para a Revisão
 * *Slide principal de impacto da introdução.*

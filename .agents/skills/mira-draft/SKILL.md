@@ -35,6 +35,9 @@ Quando o usuário pede para "consolidar", "atualizar tela", "montar slide", ou s
 
 1. **Single Source of Truth (SSOT):** O arquivo `roteiro.md` manda no posicionamento. Se o usuário quiser que a imagem mude de lugar, você altera o valor de `x` e `y` no roteiro, e então replica isso gerando a tag HTML atualizada. 
    - Padrão esperado no roteiro: `[img: .assets/arquivo.svg | x:500, y:300]` (ou notação semelhante).
+   - **Transições e Coreografia:** O roteiro suporta a declaração explícita de fluxo usando "Transições de Entrada". Em vez de separar slides e transições rigidamente, a transição (ex: seta de conexão) pertence ao slide de destino, declarando sua origem no campo `De:`.
+     - *Exemplo:* `* **Transição:** De: "2. O que é IA?" | Imagem de conexão: [img: .assets/seta.svg | x: 250, y: 0] (Clique 1)`
+     - O agente deve respeitar a ordem desses eventos (Cliques) e o mapeamento de conexões não-lineares ao consolidar o HTML (ex: injetando atributos `data-step` para animações em ordem).
 2. **Isolamento de SVGs:** Você sempre criará imagens completas em código SVG e as salvará na pasta `.assets/`. O HTML nunca deve conter SVGs inline; ele apenas referencia as imagens vetoriais como tags `<img>`.
 3. **Motor Semi-Intocável:** O arquivo HTML possui funções JavaScript essenciais para **Pan (arrastar)**, **Zoom (scroll do mouse)**, **Régua (Rules Overlay)** e o novo **Modo Edição (Drag de assets)**. Você **JAMAIS** deve editar as tags `<script>` ou o CSS global da estrutura do Viewer (a não ser que o usuário peça uma manutenção na skill em si). Em cenários normais, sua área de atuação é estritamente dentro da marcação `<!-- MIRA: INICIO ASSETS -->`.
 4. **Vibe Coding & Design (Estilo Visual):** 

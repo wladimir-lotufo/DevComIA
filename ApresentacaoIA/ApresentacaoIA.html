@@ -165,7 +165,12 @@
     const MIRA_SLIDES = [
       /* MIRA: INICIO JSON ASSETS */
       { src: ".assets/ai_types.svg", x: 0, y: 0 },
+      { src: ".assets/seta.svg", x: 250, y: 0, w: 100, autoNext: true },
       { src: ".assets/llm_process.svg", x: 504, y: -1 },
+      { src: ".assets/seta.svg", x: 750, y: 0, w: 100, autoNext: true },
+      { src: "(a definir)", x: 1000, y: 0 },
+      { src: ".assets/seta.svg", x: 504, y: 250, w: 100, autoNext: true },
+      { src: "(a definir)", x: 504, y: 500 },
       { src: ".assets/vibe_coding.svg", x: 1000, y: 0 }
       /* MIRA: FIM JSON ASSETS */
     ];
@@ -251,11 +256,18 @@
       img.className = 'mira-asset';
       img.style.left = `${slide.x}px`;
       img.style.top = `${slide.y}px`;
+      if (slide.w) img.style.width = `${slide.w}px`;
       
       canvas.appendChild(img);
       renderedImages.push(img);
       
       panCameraTo(slide.x, slide.y);
+
+      if (slide.autoNext) {
+        setTimeout(() => {
+          nextSlide();
+        }, 800);
+      }
     }
 
     // Volta 1 Slide (Apaga última imagem e move câmera)
@@ -415,6 +427,7 @@
             img.className = 'mira-asset';
             img.style.left = `${slide.x}px`;
             img.style.top = `${slide.y}px`;
+            if (slide.w) img.style.width = `${slide.w}px`;
             canvas.appendChild(img);
             renderedImages.push(img);
           }

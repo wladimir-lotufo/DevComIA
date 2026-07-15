@@ -249,11 +249,18 @@
       img.className = 'mira-asset';
       img.style.left = `${slide.x}px`;
       img.style.top = `${slide.y}px`;
+      if (slide.w) img.style.width = `${slide.w}px`;
       
       canvas.appendChild(img);
       renderedImages.push(img);
       
       panCameraTo(slide.x, slide.y);
+
+      if (slide.autoNext) {
+        setTimeout(() => {
+          nextSlide();
+        }, 800);
+      }
     }
 
     // Volta 1 Slide (Apaga última imagem e move câmera)
@@ -413,6 +420,7 @@
             img.className = 'mira-asset';
             img.style.left = `${slide.x}px`;
             img.style.top = `${slide.y}px`;
+            if (slide.w) img.style.width = `${slide.w}px`;
             canvas.appendChild(img);
             renderedImages.push(img);
           }
@@ -440,7 +448,10 @@
       MIRA_SLIDES.forEach((slide) => {
         if (slide.x !== slide.origX || slide.y !== slide.origY) {
           hasChanges = true;
-          promptLines.push(`- [img: ${slide.src} | x: ${slide.x}, y: ${slide.y}]`);
+          let extra = "";
+          if (slide.w) extra += ` | w: ${slide.w}`;
+          if (slide.autoNext) extra += ` | autoNext: true`;
+          promptLines.push(`- [img: ${slide.src} | x: ${slide.x}, y: ${slide.y}${extra}]`);
         }
       });
 
