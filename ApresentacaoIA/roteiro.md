@@ -52,7 +52,7 @@ Exemplos de aplicações:
    - Ferramentas de imagem (nano Banana, Leonardo)
    - Ferramentas de audio (whisper, audiobox)
 * **Imagem:** Acima oos icones das categorias. Abaixo os ícones para as aplicações. Colotar titulo nas aplicações. Dar destaque para Aplicações Customizadas e Ferramentas Desenvolvimento, vamos puxar slides a partir delas
-* **Visual:** **[img: .assets/aplicacoes.svg | x: 1035, y: -1, w: 356]** (Clique 2)
+* **Visual:** **[img: .assets/aplicacoes.svg | x: 1335, y: 8, w: 1026]** (Clique 2)
 
 ### 5. O Novo Normal no Desenvolvimento
 * **O "Santo Graal" do Momento:** A IA deixou de ser ficção e virou a principal alavanca de produtividade.
