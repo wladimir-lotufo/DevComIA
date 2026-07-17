@@ -52,35 +52,50 @@ Exemplos de aplicações:
    - Ferramentas de imagem (nano Banana, Leonardo)
    - Ferramentas de audio (whisper, audiobox)
 * **Imagem:** Acima oos icones das categorias. Abaixo os ícones para as aplicações. Colotar titulo nas aplicações. Dar destaque para Aplicações Customizadas e Ferramentas Desenvolvimento, vamos puxar slides a partir delas
-* **Visual:** **[img: .assets/aplicacoes.svg | x: 1335, y: 8, w: 1026]** (Clique 2)
+* **Visual:** **[img: .assets/aplicacoes.svg | x: 1400, y: 1, w: 878]** (Clique 2)
 
-### 5. O Novo Normal no Desenvolvimento
-* **O "Santo Graal" do Momento:** A IA deixou de ser ficção e virou a principal alavanca de produtividade.
-* **O Foco do Engenheiro:** Enquanto o mundo fala de imagens e vídeos, nosso foco são as **LLMs**. Código-fonte é texto, e LLMs são especialistas absolutas na manipulação de texto estruturado.
+### 7. Destaque Aplicações Customizadas
+* **Transição:** De: "6. Aplicações"
+* **Conteúdo:** Além de usar ferramentas prontas, uma grande frente do mercado é criar Aplicações Customizadas, integrando a IA via API diretamente nos negócios.
+* **Visual:** **[img: .assets/destaque_customizadas.svg | x: 1754, y: -27, w: 143]**
 
-### 7. O Novo Processo de Trabalho: Da Escrita para a Revisão
-* *Slide principal de impacto da introdução.*
-* **O Modelo Antigo:** O desenvolvedor gasta horas *escrevendo* documentação e *digitando* código do zero.
-* **O Novo Fluxo com IA:** 
-  1. **Definição de Diretrizes:** Nosso papel passa a ser definir *o que* precisa ser feito e as regras de negócio.
-  2. **Geração:** Pedimos para a IA elaborar o documento ou código.
-  3. **Revisão:** Avaliamos o resultado com olhar crítico de engenharia.
-  4. **Ajuste de Diretrizes:** Se o resultado não foi bom, não editamos o texto/código manualmente na hora; nós *ajustamos a diretriz original* e pedimos uma nova geração.
+### 8. Destaque Antigravity
+* **Transição:** De: "7. Destaque Aplicações Customizadas"
+* **Conteúdo:** Focar na aplicação Antigravity, nossa principal ferramenta agentica de desenvolvimento e aposta estratégica.
+* **Visual:** **[img: .assets/destaque_antigravity.svg | x: 1231, y: 64, w: 137]**
 
-### 8. Ferramentas e o Ecossistema: O Funil de Produtividade
+### 9. É possível usar IA para grandes sistemas?
+* **Transição:** De: "8. Destaque Antigravity"
+* **Conteúdo:** 
+  Qual o pulo do gato... O papel do Desenvolvedor passa a ser definir *Como* através de Especificações Técnicas de Arquitetura, de Especificações de Programas, de Regras Padronizadas de Geração de Código e Skills de IA que coordenam o trabalho.
+  
+  **Fluxo:**
+  1. **Geração** Pedimos para a IA elaborar o documento ou código.
+  2. **Revisão** Avaliamos o resultado com olhar crítico de engenharia.
+  3. **Ajustes** Se o resultado não foi bom, não editamos o texto/código manualmente na hora; nós *ajustamos a diretriz original* e pedimos uma nova geração.
+  4. **Tunning** Se o resultado não foi bom, não editamos o texto/código manualmente na hora; nós *ajustamos a diretriz original* e pedimos uma nova geração.
+* **Imagem:** Um diagrama cíclico focado nos "Documentos de Diretrizes". À esquerda, ícones vazados de pranchetas/documentos (Arquitetura, Skills, Regras). Eles alimentam uma engrenagem central ou cérebro mecânico (Geração), que produz um bloco de código sob uma **Lupa** (Revisão). Da lupa, sai uma seta curva grande (laranja) que volta diretamente para as pranchetas iniciais (Ajuste de Diretrizes), formando um ciclo contínuo de retroalimentação.
+* **Visual:** **[img: .assets/ciclo_feedback.svg | x: 1170, y: 500, w: 400]**
+
+### 10. 
+* **Transição:** De: "9. É possível usar IA para grandes sistemas?"
+* **Conteúdo:** O maior esforço para ganhar escala ocorre na revisão das Skills de IA.
+* **Visual:** **[img: .assets/destaque_item4.svg | x: 1182, y: 487, w: 642]**
+
+### 11. Ferramentas e o Ecossistema: O Funil de Produtividade
 * **O Novo Básico (Ferramentas Diversas):** A IA já é *commodity* em tarefas gerais. Chats (ChatGPT/Gemini) para brainstorm inicial, NotebookLM para consolidar PDFs e grandes regras de negócio, e Teams para transcrição e resumos de reuniões.
 * **O Nosso Diferencial (Ferramentas para o Desenvolvedor):** Para escrever código, precisamos de contexto completo do repositório. Usamos IDEs Agênticas (ex: Cursor, Windsurf).
 * **Nossa Aposta Estratégica: Antigravity:** O investimento massivo do Google em IA voltada para código nos dá uma ferramenta nativa de estado da arte para aplicar o novo processo de trabalho.
 Baixo impacto se houver necessidade de troca de IDE agentico.
 
-### 9. Vibe Coding 🌊 (Exploração/Design):
+### 12. Vibe Coding 🌊 (Exploração/Design):
   * Abordagem intuitiva e rápida. Prompt -> Gera -> Testa -> Ajusta. Focado no resultado visual e "sentimento".
   * **Vantagem:** Prototipagem relâmpago, criatividade extrema.
   * **Desvantagem:** Código difícil de manter e escalar ("caixa preta").
 
 - [x] **[img: .assets/vibe_coding.svg | x: -468, y: -6]**
 
-### 10. Spec-Driven Development 📐 (Engenharia/Produção):
+### 13. Spec-Driven Development 📐 (Engenharia/Produção):
   * Especificações e regras restritas (testes, docs, arquitetura) definidas *antes* do código. A IA segue a regra estritamente.
   * **Vantagem:** Previsibilidade, segurança, escala bem em equipe.
   * **Desvantagem:** Mais lento no início.

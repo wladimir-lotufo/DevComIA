@@ -477,4 +477,14 @@
     </g>
 
   </g>
+  <!-- Título -->
+    <!-- Título Desenhado: LLM -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-width="2.5">
+      <path d="M 82.0,5.0 L 82.0,15.0 L 90.0,15.0 M 94.0,5.0 L 94.0,15.0 L 102.0,15.0 M 106.0,15.0 L 106.0,5.0 L 111.0,10.0 L 116.0,5.0 L 116.0,15.0" stroke="#1a1a1a" />
+    </g>
+    <g stroke-width="1.0">
+      <path d="M 82.0,5.0 L 82.0,15.0 L 90.0,15.0 M 94.0,5.0 L 94.0,15.0 L 102.0,15.0 M 106.0,15.0 L 106.0,5.0 L 111.0,10.0 L 116.0,5.0 L 116.0,15.0" stroke="#1a1a1a" />
+    </g>
+  </g>
 </svg>

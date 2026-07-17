@@ -268,8 +268,12 @@
       { src: ".assets/tokens.svg", x: 413, y: 325, w: 200 },
       { src: ".assets/cifrao.svg", x: 494, y: 318, w: 96 },
       { src: ".assets/seta.svg", x: 768, y: 15, w: 100, autoNext: true },
-      { src: ".assets/aplicacoes.svg", x: 1035, y: -1, w: 356 },
-      { src: ".assets/vibe_coding.svg", x: -468, y: -6 }
+      { src: ".assets/aplicacoes.svg", x: 1400, y: 1, w: 878 },
+      { src: ".assets/destaque_customizadas.svg", x: 1754, y: -27, w: 143 },
+      { src: ".assets/destaque_antigravity.svg", x: 1231, y: 64, w: 137 },
+      { src: ".assets/vibe_coding.svg", x: -468, y: -6 },
+      { src: ".assets/ciclo_feedback.svg", x: 1170, y: 500, w: 601 },
+      { src: ".assets/destaque_item4.svg", x: 1182, y: 487, w: 642 }
       /* MIRA: FIM JSON ASSETS */
     ];
 
@@ -697,7 +701,7 @@
           hasChanges = true;
           let extra = "";
           if (slide.w) extra += `, w: ${Math.round(slide.w)}`;
-          if (slide.r) extra += `, r: ${Math.round(slide.r)}`;
+          if (slide.r !== undefined && slide.r !== null) extra += `, r: ${Math.round(slide.r)}`;
           if (slide.autoNext) extra += `, autoNext: true`;
           promptLines.push(`- [img: ${slide.src} | x: ${slide.x}, y: ${slide.y}${extra}]`);
         }

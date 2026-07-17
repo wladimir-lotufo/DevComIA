@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" width="100%" height="100%">
+  <g fill="none" stroke="#00FFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Caixa de destaque handdrawn -->
+    <path d="M 10 20 C 50 5, 150 5, 190 20 C 195 50, 195 80, 190 90 C 150 100, 50 100, 10 90 C 5 80, 5 30, 10 20 Z" stroke-dasharray="10 8" />
+    <!-- Linhas de ênfase -->
+    <path d="M -5 -5 L 15 15 M 205 -5 L 185 15 M -5 105 L 15 85 M 205 105 L 185 85" stroke-width="3" />
+    <!-- Pequenas estrelas/brilhos -->
+    <path d="M 20 5 L 20 15 M 15 10 L 25 10" stroke-width="2" />
+    <path d="M 180 85 L 180 95 M 175 90 L 185 90" stroke-width="2" />
+  </g>
+</svg>

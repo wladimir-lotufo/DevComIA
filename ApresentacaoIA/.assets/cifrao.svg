@@ -51,4 +51,6 @@
   <!-- 5. Elementos Finais (Olhos, Reflexos Brancos, Miolos Escuros) -->
   <g>
   </g>
+  <!-- Título -->
+  <text x="100" y="15" font-family="sans-serif" font-weight="bold" font-size="12" fill="#1a1a1a" text-anchor="middle">Cifrão</text>
 </svg>

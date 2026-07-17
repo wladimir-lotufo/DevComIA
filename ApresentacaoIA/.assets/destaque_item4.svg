@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-100 -50 600 550" width="100%" height="100%">
+  <!-- ==========================================
+       Design System: MIRA SKETCH - Destaque Overlay
+       ========================================== -->
+  <g stroke="#ff904f" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.8">
+    <g stroke-width="4.5">
+      <!-- Linhas de Ação irradiando do centro do item 4 (60, 225) -->
+      <path d="M 60 160 L 60 140 M 60 290 L 60 310" />
+      <path d="M 20 225 L 0 225 M 100 225 L 120 225" />
+      <path d="M 35 200 L 20 185 M 85 250 L 100 265" />
+      <path d="M 35 250 L 20 265 M 85 200 L 100 185" />
+    </g>
+    <!-- Círculo tracejado ao redor do item 4 -->
+    <circle cx="60" cy="225" r="50" stroke-width="3" stroke-dasharray="10 5" />
+  </g>
+</svg>
